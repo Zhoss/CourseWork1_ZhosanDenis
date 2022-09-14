@@ -1,7 +1,8 @@
 public class App {
-    static Employee[] employeeRepository = new Employee[10];
+
 
     public static void main(String[] args) {
+        Employee[] employeeRepository = new Employee[10];
         employeeRepository[0] = new Employee("Друг Марат Григорьевич", 5, 100_000);
         employeeRepository[1] = new Employee("Аглеев Данил Янович", 4, 72_000);
         employeeRepository[2] = new Employee("Баймулдина Гульнара Яновна", 2, 85_000);
