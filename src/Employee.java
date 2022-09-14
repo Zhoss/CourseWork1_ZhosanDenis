@@ -47,16 +47,4 @@ public class Employee {
         return "Ф.И.О - " + employeeFullName + ", отдел номер " + departmentNumber + ", размер зарплаты - " + employeeSalary + ", id = " + id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return departmentNumber == employee.departmentNumber;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(departmentNumber);
-    }
 }
