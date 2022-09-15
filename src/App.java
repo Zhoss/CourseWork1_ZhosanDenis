@@ -9,7 +9,7 @@ public class App {
         employeeRepository[4] = new Employee("Ивченкова Ангелина Вячеславовна", 1, 66_000);
         employeeRepository[5] = new Employee("Алабин Владислав Егорович", 1, 48_000);
         employeeRepository[6] = new Employee("Даргомыжская Антонина Никитовна", 4, 97_000);
-        employeeRepository[7] = new Employee("Голубовская Карина Григорьевна", 3, 112_000);
+//        employeeRepository[7] = new Employee("Голубовская Карина Григорьевна", 3, 112_000);
         employeeRepository[8] = new Employee("Садаков Григорий Валентинович", 5, 83_000);
         employeeRepository[9] = new Employee("Хоробритова Татьяна Маратовна", 2, 70_000);
 
