@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 class EmployeeBook {
     private final Employee[] employees;
 
@@ -70,7 +68,7 @@ class EmployeeBook {
         employeeBook.changeEmployee(employeeRepository, "Голубовская Карина Григорьевна", 150_000, 1);
         System.out.println("");
 
-        employeeBook.printAllEmployeesInAllDepartment(employeeRepository);
+        employeeBook.printAllEmployeesInDepartment(employeeRepository, 1);
     }
 
     public void showAllData(Employee[] employees) {
@@ -288,52 +286,26 @@ class EmployeeBook {
         }
     }
 
-    public void printAllEmployeesInAllDepartment(Employee[] employees) {
-        ArrayList<String> employeesList = new ArrayList<>();
-        for (Employee employee : employees) {
-            if (employee != null) {
-                if (employee.getDepartmentNumber() == 1) {
-                    employeesList.add(employee.getEmployeeFullName());
+    public void printAllEmployeesInDepartment(Employee[] employees, int startingDepartmentNumber) {
+        int maxDepartmentNumber = 0;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+                if (employees[i].getDepartmentNumber() > maxDepartmentNumber) {
+                    maxDepartmentNumber = employees[i].getDepartmentNumber();
                 }
             }
         }
-        System.out.println("Отдел 1, сотрудники: " + employeesList);
-        employeesList.removeAll(employeesList);
-        for (Employee employee : employees) {
-            if (employee != null) {
-                if (employee.getDepartmentNumber() == 2) {
-                    employeesList.add(employee.getEmployeeFullName());
+        for (int i1 = 0; i1 < maxDepartmentNumber; i1++) {
+            System.out.print("Сотрудники отдела " + (startingDepartmentNumber + i1) + ": ");
+            for (int i2 = 0; i2 < employees.length; i2++) {
+                if (employees[i2] != null) {
+                    if (employees[i2].getDepartmentNumber() == (startingDepartmentNumber + i1)) {
+                        System.out.print(employees[i2].getEmployeeFullName() + ", ");
+                    }
                 }
             }
+            System.out.println("");
         }
-        System.out.println("Отдел 2, сотрудники: " + employeesList);
-        employeesList.removeAll(employeesList);
-        for (Employee employee : employees) {
-            if (employee != null) {
-                if (employee.getDepartmentNumber() == 3) {
-                    employeesList.add(employee.getEmployeeFullName());
-                }
-            }
-        }
-        System.out.println("Отдел 3, сотрудники: " + employeesList);
-        employeesList.removeAll(employeesList);
-        for (Employee employee : employees) {
-            if (employee != null) {
-                if (employee.getDepartmentNumber() == 4) {
-                    employeesList.add(employee.getEmployeeFullName());
-                }
-            }
-        }
-        System.out.println("Отдел 4, сотрудники: " + employeesList);
-        employeesList.removeAll(employeesList);
-        for (Employee employee : employees) {
-            if (employee != null) {
-                if (employee.getDepartmentNumber() == 5) {
-                    employeesList.add(employee.getEmployeeFullName());
-                }
-            }
-        }
-        System.out.println("Отдел 5, сотрудники: " + employeesList);
     }
 }
 
