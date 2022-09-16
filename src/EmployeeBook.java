@@ -13,7 +13,7 @@ class EmployeeBook {
         employeeRepository[3] = new Employee("Ахметгалин Григорий Васильевич", 3, 53_000);
         employeeRepository[4] = new Employee("Ивченкова Ангелина Вячеславовна", 1, 66_000);
         employeeRepository[5] = new Employee("Алабин Владислав Егорович", 1, 48_000);
-//        employeeRepository[6] = new Employee("Даргомыжская Антонина Никитовна", 4, 97_000);
+        employeeRepository[6] = new Employee("Даргомыжская Антонина Никитовна", 4, 97_000);
         employeeRepository[7] = new Employee("Голубовская Карина Григорьевна", 3, 112_000);
         employeeRepository[8] = new Employee("Садаков Григорий Валентинович", 5, 83_000);
         employeeRepository[9] = new Employee("Хоробритова Татьяна Маратовна", 2, 70_000);
@@ -59,8 +59,8 @@ class EmployeeBook {
         employeeBook.findSalaryLessThanSalaryLimit(employeeRepository, salaryLimit);
         System.out.println("");
 
-        employeeBook.removeEmployee(employeeRepository, "Хоробритова Татьяна Маратовна");
-        System.out.println("");
+//        employeeBook.removeEmployee(employeeRepository, "Хоробритова Татьяна Маратовна");
+//        System.out.println("");
 
         employeeBook.addEmployee(employeeRepository, "Жосан Денис Сергеевич", 1, 100_000);
         System.out.println("");
@@ -68,6 +68,7 @@ class EmployeeBook {
         employeeBook.changeEmployee(employeeRepository, "Голубовская Карина Григорьевна", 150_000, 1);
         System.out.println("");
 
+        employeeBook.findDepartmentMaxNumber(employeeRepository);
         employeeBook.printAllEmployeesInDepartment(employeeRepository, 1);
     }
 
@@ -286,7 +287,7 @@ class EmployeeBook {
         }
     }
 
-    public void printAllEmployeesInDepartment(Employee[] employees, int startingDepartmentNumber) {
+    public int findDepartmentMaxNumber(Employee[] employees) {
         int maxDepartmentNumber = 0;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null) {
@@ -295,12 +296,15 @@ class EmployeeBook {
                 }
             }
         }
-        for (int i1 = 0; i1 < maxDepartmentNumber; i1++) {
-            System.out.print("Сотрудники отдела " + (startingDepartmentNumber + i1) + ": ");
-            for (int i2 = 0; i2 < employees.length; i2++) {
-                if (employees[i2] != null) {
-                    if (employees[i2].getDepartmentNumber() == (startingDepartmentNumber + i1)) {
-                        System.out.print(employees[i2].getEmployeeFullName() + ", ");
+        return maxDepartmentNumber;
+    }
+    public void printAllEmployeesInDepartment(Employee[] employees, int startingDepartmentNumber) {
+        for (int i = 0; i < findDepartmentMaxNumber(employees); i++) {
+            System.out.print("Сотрудники отдела " + (startingDepartmentNumber + i) + ": ");
+            for (int i1 = 0; i1 < employees.length; i1++) {
+                if (employees[i1] != null) {
+                    if (employees[i1].getDepartmentNumber() == (startingDepartmentNumber + i)) {
+                        System.out.print(employees[i1].getEmployeeFullName() + ", ");
                     }
                 }
             }
