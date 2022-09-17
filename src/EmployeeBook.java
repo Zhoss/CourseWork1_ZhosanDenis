@@ -9,11 +9,11 @@ class EmployeeBook {
         Employee[] employeeRepository = new Employee[10];
         employeeRepository[0] = new Employee("Друг Марат Григорьевич", 5, 100_000);
         employeeRepository[1] = new Employee("Аглеев Данил Янович", 4, 72_000);
-        employeeRepository[2] = new Employee("Баймулдина Гульнара Яновна", 2, 85_000);
+//        employeeRepository[2] = new Employee("Баймулдина Гульнара Яновна", 2, 85_000);
         employeeRepository[3] = new Employee("Ахметгалин Григорий Васильевич", 3, 53_000);
         employeeRepository[4] = new Employee("Ивченкова Ангелина Вячеславовна", 1, 66_000);
         employeeRepository[5] = new Employee("Алабин Владислав Егорович", 1, 48_000);
-        employeeRepository[6] = new Employee("Даргомыжская Антонина Никитовна", 4, 97_000);
+//        employeeRepository[6] = new Employee("Даргомыжская Антонина Никитовна", 4, 97_000);
         employeeRepository[7] = new Employee("Голубовская Карина Григорьевна", 3, 112_000);
         employeeRepository[8] = new Employee("Садаков Григорий Валентинович", 5, 83_000);
         employeeRepository[9] = new Employee("Хоробритова Татьяна Маратовна", 2, 70_000);
@@ -253,12 +253,12 @@ class EmployeeBook {
                 employees[i] = new Employee(employeeFullName, departmentNumber, employeeSalary);
                 System.out.println("Новый сотрудник - " + employees[i]);
                 break;
-            } else if (employees[i] != null) {
+            } else {
                 counter++;
-                if (counter >= employees.length) {
-                    System.out.println("Список переполнен. Добавление нового сотрудника невозможно");
-                }
             }
+        }
+        if (counter >= employees.length) {
+            System.out.println("Список переполнен. Добавление нового сотрудника невозможно");
         }
     }
 
