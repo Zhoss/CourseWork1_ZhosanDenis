@@ -1,5 +1,4 @@
-import java.util.Objects;
-
+import org.apache.commons.lang3.StringUtils;
 public class Employee {
     private String employeeFullName;
     private int departmentNumber;
@@ -8,7 +7,12 @@ public class Employee {
     public static int employeeCounter = 1;
 
     public Employee(String employeeFullName, int departmentNumber, int employeeSalary) {
-        this.employeeFullName = employeeFullName;
+        try {
+            setEmployeeFullName(employeeFullName);
+        } catch (BadRequestException e) {
+            System.out.println(e.getMessage());
+        }
+
         this.departmentNumber = departmentNumber;
         if (departmentNumber < 0 || departmentNumber > 5) {
             throw new IllegalArgumentException("Номера отделов могут быть 1-5");
@@ -16,6 +20,16 @@ public class Employee {
         this.employeeSalary = employeeSalary;
         this.id = employeeCounter;
         employeeCounter++;
+    }
+
+    public String checkFullName(String fullName) {
+        String[] strings = StringUtils.split(fullName);
+        StringBuilder builder = new StringBuilder();
+        for (String string : strings) {
+            String str = StringUtils.capitalize(string);
+            builder.append(str).append(" ");
+        }
+        return StringUtils.stripEnd(builder.toString(), null);
     }
 
     public String getEmployeeFullName() {
@@ -32,6 +46,14 @@ public class Employee {
 
     public int getId() {
         return id;
+    }
+
+    private void setEmployeeFullName(String employeeFullName) throws BadRequestException {
+        if (!StringUtils.isEmpty(employeeFullName) && !StringUtils.isBlank(employeeFullName)) {
+            this.employeeFullName = checkFullName(employeeFullName);
+        } else {
+            throw new BadRequestException("400 Bad Request");
+        }
     }
 
     public void setDepartmentNumber(int departmentNumber) {
