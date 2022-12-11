@@ -49,7 +49,7 @@ public class Employee {
     }
 
     private void setEmployeeFullName(String employeeFullName) throws BadRequestException {
-        if (!StringUtils.isEmpty(employeeFullName) && !StringUtils.isBlank(employeeFullName)) {
+        if (!StringUtils.isEmpty(employeeFullName) && !StringUtils.isBlank(employeeFullName) && StringUtils.isAlpha(employeeFullName)) {
             this.employeeFullName = checkFullName(employeeFullName);
         } else {
             throw new BadRequestException("400 Bad Request");
